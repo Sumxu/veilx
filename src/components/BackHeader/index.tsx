@@ -8,6 +8,7 @@ import { formatAddress } from "@/Hooks/Utils";
 import { Picker } from "antd-mobile";
 import i18n, { t } from "i18next";
 import { DownOutline } from "antd-mobile-icons";
+import WalletBox from '@/components/WalletBox';
 import walletsIcon from '@/assets/basic/wallet.png'
 const Header: React.FC<{
   title: string;
@@ -118,9 +119,15 @@ const Header: React.FC<{
       className={`back-header ${scrolled ? "scrolled" : ""}`}
       ref={headerRef}
     >
-      <div className="back-left">
+       <div className="back-left">
         {langTxt && (
-            <img src={back} className="lan-icon" onClick={()=>navigate(-1)}></img>
+          <div className="lan-option">
+            <img src={lan} className="lan-icon"></img>
+            <div className="lan-txt" onClick={langClick}>
+              {langTxt}
+            </div>
+            <DownOutline color="#fff" />
+          </div>
         )}
       </div>
       {
@@ -131,13 +138,7 @@ const Header: React.FC<{
         className="right-text"
       >
         {isHome ? (
-          <div className="back-left">
-           
-            <span className="walletAddressSpan">
-               <img src={walletsIcon} className="walletsIcon"></img>
-              {formatAddress(walletAddress)}
-            </span>
-          </div>
+           <WalletBox></WalletBox>
         ) : (
           <div className="back-left">
             <img

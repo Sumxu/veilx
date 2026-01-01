@@ -9,7 +9,7 @@ import ContractSend from "@/Hooks/ContractSend.ts";
 import ContractList from "@/Contract/Contract.ts";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
 import closeIcon from "@/assets/basic/close.png";
-import checkIcon from "@/assets/team/check.png";
+import checkIcon from "@/assets/node/nodeIcon.png";
 interface nodeItem {
   amount: BigNumber;
   inventory: BigNumber; //库存
@@ -20,32 +20,10 @@ interface buyNftPopupClass {
   nodeId: number;
 }
 function BuyNftPopup(Props: buyNftPopupClass) {
-  const hintTxts = [
-    t("全网入金1%永久分红"),
-    t("买入手续费1%永久分红"),
-    t("卖出手续费1.5%永久分红"),
-    t("防暴跌机制手续费30%永久分红"),
-    t("盈利税2%分红"),
-  ];
   const mapTxts = {
-    0: [
-      t("小节点合伙人赠送VIP1级别(激活即可享受)"),
-      t(
-        "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
-      ),
-      t("前1～500位: 奖励2000枚VIPL"),
-      t("前501～1000位: 奖励1400枚VIPL"),
-      t("前1001～1600位: 奖励980枚VIPL"),
-    ],
-    1: [
-      t("大节点合伙人赠送VIP2级别(激活即可享受)"),
-      t(
-        "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
-      ),
-      t("前1～300位: 奖励5000枚VIPL"),
-      t("前301～600位: 奖励3500枚VIPL"),
-      t("前601～1000位: 奖励2450枚VIPL"),
-    ],
+    0: [t("联创节点")],
+    1: [t("联创节点")],
+    2: [t("普通节点")],
   };
   const walletAddress = userAddress((state) => state.address);
   //usdt 余额
@@ -147,7 +125,7 @@ function BuyNftPopup(Props: buyNftPopupClass) {
       <div className="header-top-box">
         <div className="txt">
           {t("购买")}
-          {Props.nodeId == 0 ? t("小节点") : t("大节点")}
+          {mapTxts[Props.nodeId]}
         </div>
         <img
           src={closeIcon}
@@ -159,31 +137,9 @@ function BuyNftPopup(Props: buyNftPopupClass) {
         {fromWei(nodeInfo.amount, 18, true, 2)} USDT
       </div>
       <div className="get-txt-option">
-        {t("即可获得")}
-        {Props.nodeId == 0 ? t("小节点") : t("大节点")}
+        {t("即可获得")}{mapTxts[Props.nodeId]}
       </div>
-      <div className="buy-hint-option">
-        <div className="hintOption">{t("获得权益")}</div>
-        <div className="right-option">
-          {hintTxts.map((item, index) => {
-            return (
-              <div className="txtOption" key={index}>
-                <img className="iconIcon" src={checkIcon}></img>
-                <div className="txt-1-item">{item}</div>
-              </div>
-            );
-          })}
-
-          {mapTxts[Props.nodeId].map((item, index) => {
-            return (
-              <div className="txtOption" key={index}>
-                <img className="iconIcon" src={checkIcon}></img>
-                <div className="txt-1-item">{item}</div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+       
       <div className="need-pay-option">
         <div className="need-txt-1">
           {t("需支付")}：{fromWei(nodeInfo.amount, 18, true, 2)} USDT

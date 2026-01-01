@@ -20,8 +20,8 @@ export default class EnvConfigProvider {
     return {
       apiBase: "https://api.veilplus.com/api/",
       contractUsdt: "0x0158953982FbF5f42D5eb934046cD0707D1B2E74",
-      contractVeillUser: "0x29baD8Ea5311014B1A9cda2aeAaE178C1A6E7484",
-      contractVeillNode: "0x1e42247F4f5De8A51DAdfD1c544b921Ed1c8bC8e",
+      contractVeillUser: "0x7431f5E25e5622b7347751426Df53DcD622Ca437",
+      contractVeillNode: "0x4F6F53Dd7a0dbD31D90b2ECEC7F9c05533C3673e",
       chainId: "0x61",
       rpcUrl: "https://bsc-testnet-rpc.publicnode.com/",
       blockExplorerUrls: "http://143.92.39.28:9030/api",

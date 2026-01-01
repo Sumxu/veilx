@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  padding: 0 8px;
+  padding: 0 0 0 8px;
   position: fixed;
   z-index: 999;
   left: 0;
@@ -35,23 +35,7 @@
         color: #ffffff;
       }
     }
-
-    .walletAddressSpan {
-      display: flex;
-      align-items: center;
-      .walletsIcon {
-        width: 16px;
-        height: 16px;
-        margin-right: 4px;
-      }
-      border-radius: 14px;
-      margin-left: 6px;
-      padding: 6px 16px;
-      font-weight: 500;
-      font-size: 12px;
-      color: rgba(0, 0, 0, 0.85);
-      background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
-    }
+ 
   }
   .back-img {
     width: 24px;
@@ -67,7 +51,6 @@
 
   .right-text {
     flex: none;
-    // width: 130px;
     text-align: right;
     font-size: 14px;
     color: #67baff;

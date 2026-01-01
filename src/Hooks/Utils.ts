@@ -1,6 +1,6 @@
 import { message } from "antd";
 import { ethers, BigNumber } from "ethers";
-import {t} from 'i18next'
+import { t } from "i18next";
 /**
  * 格式化钱包地址
  * @param addr 钱包地址
@@ -10,11 +10,11 @@ import {t} from 'i18next'
  */
 export function formatAddress(
   addr?: string,
-  prefixLen = 7,
+  prefixLen = 4,
   suffixLen = 4
 ): string {
   if (!addr) return "";
-  return `${addr.slice(0, prefixLen)}....${addr.slice(-suffixLen)}`;
+  return `${addr.slice(0, prefixLen)}...${addr.slice(-suffixLen)}`;
 }
 /**
  * 根据数字的位数生成掩码
@@ -356,7 +356,9 @@ export function copyText(text: string) {
       () => Totast(t("复制成功"), "success"),
       () => {
         const ok = fallbackCopy(text);
-        ok ? Totast(t("复制成功"), "success") : Totast("请长按文本复制", "info");
+        ok
+          ? Totast(t("复制成功"), "success")
+          : Totast("请长按文本复制", "info");
       }
     );
   } else {

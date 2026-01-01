@@ -1,5 +1,5 @@
 .headerFixedLoginBox {
-  padding-inline: 16px;
+  padding-left: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,7 +12,7 @@
   right: 0;
   .logoTopIcon {
     width: 112px;
-    height: 32px;
+    height: 40px;
   }
   &.scrolled {
     background-color: #000000;

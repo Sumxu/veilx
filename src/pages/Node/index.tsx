@@ -7,12 +7,12 @@ import { BigNumber, ethers } from "ethers";
 import { storage } from "@/Hooks/useLocalStorage";
 import { Drawer, Flex, Spin } from "antd";
 import { ProgressCircle } from "antd-mobile";
+import checkIcon from "@/assets/node/nodeIcon.png";
 import BuyNftPopup from "./component/BuyNftPopup";
 import BackHeader from "@/components/BackHeader";
 import { fromWei, Totast, toWei } from "@/Hooks/Utils.ts";
 import InviteModal from "@/components/InviteModal";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
-import teamIcon from "@/assets/team/teamIcon.png";
 
 interface nodeItem {
   amount: BigNumber;
@@ -20,6 +20,7 @@ interface nodeItem {
   inventory: BigNumber; //库存
   max: BigNumber; //最大
   id: number; //node 编号
+  txtLst: string[];
 }
 interface userNodeInfo {
   nodeId: BigNumber; //0小 1大
@@ -40,28 +41,45 @@ const Node: React.FC = () => {
   const [nodeList, setNodeList] = useState<nodeItem[]>([
     {
       amount: BigNumber.from("0"),
-      nodeName: t("小节点"),
+      nodeName: t("联创节点"),
       max: BigNumber.from("0"),
       inventory: BigNumber.from("0"),
       id: 0,
       txtLst: [
-        t("小节点合伙人赠送VIP1级别(激活即可享受)"),
-        t(
-          "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
-        ),
+        t("赠送V3级别"),
+        t("赠送20000枚VEX"),
+        t("白名单购买资格10000U"),
+        t("白名单购买资格10000U"),
+        t("捐赠盈利税5%"),
+        t("市场盈利税25%"),
       ],
     },
     {
       amount: BigNumber.from("0"),
-      nodeName: t("大节点"),
+      nodeName: t("联创节点"),
       max: BigNumber.from("0"),
       inventory: BigNumber.from("0"),
       id: 1,
       txtLst: [
-        t("大节点合伙人赠送VIP2级别(激活即可享受)"),
-        t(
-          "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
-        ),
+        t("赠送V2级别"),
+        t("赠送6000枚VEX"),
+        t("白名单购买资格2000U"),
+        t("捐赠盈利税5%"),
+        t("市场盈利税25%"),
+      ],
+    },
+    {
+      amount: BigNumber.from("0"),
+      nodeName: t("普通节点"),
+      max: BigNumber.from("0"),
+      inventory: BigNumber.from("0"),
+      id: 2,
+      txtLst: [
+        t("赠送V1级别"),
+        t("赠送2000枚VEX"),
+        t("白名单购买资格500U"),
+        t("捐赠盈利税5%"),
+        t("市场盈利税25%"),
       ],
     },
   ]);
@@ -75,8 +93,7 @@ const Node: React.FC = () => {
     getUserNodeInfo();
   };
   //总数量
-  const totalNumer: number = 2600;
-
+  const totalNumer: number = 609;
   //nft列表加载状态
   const [listLoading, setListLoading] = useState<boolean>(false);
   /**
@@ -152,11 +169,7 @@ const Node: React.FC = () => {
       //已经是节点
       return <span>{t("待激活")}</span>;
     } else {
-      return (
-        <span>
-          {fromWei(item.amount, 18, true, 2)}U{t("购买")}
-        </span>
-      );
+      return <span>{t("购买")}</span>;
     }
   };
   /**
@@ -165,64 +178,46 @@ const Node: React.FC = () => {
   const initNodeInfo = async () => {
     setListLoading(true);
     try {
-      const nodeOne = await ContractRequest({
-        tokenName: "vailPlusNodeToken",
-        methodsName: "nodeInfo",
-        params: [0],
-      });
-
-      const nodeTwo = await ContractRequest({
-        tokenName: "vailPlusNodeToken",
-        methodsName: "nodeInfo",
-        params: [1],
-      });
-
-      if (!nodeOne.value || !nodeTwo.value) return;
-      setNodeList([
-        {
-          nodeName: t("小节点"),
-          amount: nodeOne.value[0],
-          max: nodeOne.value[1],
-          inventory: nodeOne.value[2],
-          id: 0,
-          txtLst: [
-            t("小节点合伙人赠送VIP1级别(激活即可享受)"),
-            t(
-              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,小节点合伙人赠送250U账户(激活即可享受)"
-            ),
-          ],
-        },
-        {
-          nodeName: t("大节点"),
-          amount: nodeTwo.value[0],
-          max: nodeTwo.value[1],
-          inventory: nodeTwo.value[2],
-          id: 1,
-          txtLst: [
-            t("大节点合伙人赠送VIP2级别(激活即可享受)"),
-            t(
-              "赠送节点合伙人抢购金额的50%捐赠矿池收益账户,大节点合伙人赠送500U账户(激活即可享受)"
-            ),
-          ],
-        },
-      ]);
+      const results = await Promise.all(
+        nodeList.map((item) =>
+          ContractRequest({
+            tokenName: "vailPlusNodeToken",
+            methodsName: "nodeInfo",
+            params: [item.id],
+          })
+        )
+      );
+      setNodeList((prev) =>
+        prev.map((item, index) => {
+          const res = results[index]?.value;
+          if (!res) return item;
+          return {
+            ...item,
+            amount: res[0],
+            max: res[1],
+            inventory: res[2],
+          };
+        })
+      );
     } catch (error) {
+      console.error("initNodeInfo error:", error);
     } finally {
       setListLoading(false);
     }
   };
   useEffect(() => {
-    isInviterFn();
     initNodeInfo();
     getUserNodeInfo();
   }, []);
   return (
     <>
-      <div className="home-page">
+      <div className="NodePage">
         <BackHeader isHome={true} />
         <div className="header-box">
           <div className="header-box-image">
-            <div className="appName">VEIL PLUS {t("生态节点")}</div>
+            <div className="appNameBox">
+              <div className="appName">VEILX{t("生态节点")}</div>
+            </div>
             <div className="center-number-option">
               <div className="number-option">
                 <span className="spn-1">{t("限量")}</span>
@@ -231,22 +226,8 @@ const Node: React.FC = () => {
             </div>
           </div>
         </div>
-
-        <svg width="0" height="0">
-          <defs>
-            <linearGradient
-              id="gradientColor"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="0%"
-            >
-              <stop offset="0%" stopColor="#00B2FE" />
-              <stop offset="100%" stopColor="#00FDE3" />
-            </linearGradient>
-          </defs>
-        </svg>
-        <div className="nodesBox">
+        <div className="block200"></div>
+        <div className="nodesListBox">
           {listLoading ? (
             <div className="assetDetailSpinBox">
               <Spin />
@@ -254,61 +235,53 @@ const Node: React.FC = () => {
           ) : (
             nodeList.map((item, index) => {
               return (
-                <div className="nodeItem" key={index}>
-                  <div
-                    className={`trapezoid ${
-                      item.id == 0 ? "trapezoidOne" : "trapezoidTwo"
-                    }`}
-                  >
-                    {" "}
-                    {item.nodeName}
-                  </div>
-                  <div className="progressCircleItem">
-                    <ProgressCircle
-                      className="progressCircleReverse"
-                      percent={selllWith(item)}
-                      style={{
-                        "--size": "98px",
-                        "--track-width": "4px",
-                        "--fill-color": "url(#gradientColor)",
-                        "--track-color": "#284647",
-                      }}
-                    >
-                      <div className="progressCircleNumber">
-                        {item.inventory.toString()}
+                <div className="box" key={index}>
+                  <div className="nodeBox">
+                    <div className="headerTop">
+                      <div className="leftOption">
+                        <div className="txt">{item.nodeName}</div>
+                        <div className="tagOption">
+                          <span className="spn1">限量</span>
+                          <span className="spn2">
+                            {item.inventory.toString()}
+                            <span className="spn2-1">
+                              / {item.max.toString()}
+                            </span>
+                          </span>
+                        </div>
                       </div>
-                      <div className="progressCircleTxt">{t("剩余")}</div>
-                    </ProgressCircle>
-                  </div>
-                  <div className="numberItem">
-                    <div className="itemHintTxt">
-                      <div className="hintTxt hintOne">{t("总量")}</div>
-                      <div className="hintTxt hintOne">
-                        {item.max.toString()}
+                      <div className="rightOption">
+                        {fromWei(item.amount, 18, true, 2)}U
                       </div>
                     </div>
-                    <div className="line"></div>
-                    <div className="itemHintTxt">
-                      <div className="hintTxt hintOne">{t("已售")}</div>
-                      <div className="hintTxt hintOne">{selllNumber(item)}</div>
+
+                    <div className="stepBox">
+                      <div className="stepOption">
+                        <div
+                          className="stepCheckOption"
+                          style={{ width: `${selllWith(item)}%` }}
+                        ></div>
+                      </div>
                     </div>
-                  </div>
-                  <div
-                    className={`btn ${item.id == 0 ? "oneBtn" : "twoBtn"}`}
-                    onClick={() => buyClick(item)}
-                  >
-                    {nodeBtn(item)}
+                    <div className="buyBtn" onClick={() => buyClick(item)}>{nodeBtn(item)}</div>
+                    {item.txtLst.map((txtItem, txtIndex) => {
+                      return (
+                        <div className="txtBox" key={txtIndex}>
+                          <div className="txtOption">
+                            <img src={checkIcon} className="txtIcon"></img>
+                            <div className="txt">{txtItem}</div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                    <div className="endTxtOption">
+                      注：捐赠和市场盈利税按1000U/份为单
+                    </div>
                   </div>
                 </div>
               );
             })
           )}
-        </div>
-        <div className="teamBtn" onClick={() => myTeamPath()}>
-          <img src={teamIcon} className="teamIcon"></img>
-          <span className="spnTxt">
-            {t("我的团队")}
-          </span>
         </div>
       </div>
       <Drawer
@@ -323,10 +296,6 @@ const Node: React.FC = () => {
       >
         <BuyNftPopup nodeId={nodeId} onClose={() => BuyNftPopupCloseChange()} />
       </Drawer>
-      <InviteModal
-        isShow={inviteShow}
-        onClose={() => setInviteShow(false)}
-      ></InviteModal>
     </>
   );
 };

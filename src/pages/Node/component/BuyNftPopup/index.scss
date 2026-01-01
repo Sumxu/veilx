@@ -23,61 +23,22 @@
     margin-top: 16px;
     font-weight: bold;
     font-size: 24px;
-    color: #00f8f3;
+    color: #fff;
     text-align: center;
     font-weight: 400;
+
   }
   .get-txt-option {
     text-align: center;
     margin-top: 6px;
     font-weight: 400;
     font-size: 12px;
-    color: #00f8f3;
-  }
-  .buy-hint-option {
-    margin-top: 24px;
-    margin-bottom: 8px;
-    padding: 12px;
-    background: rgba(0, 240, 247, 0.15);
-    border: 1px solid rgba(0, 178, 254, 1);
-    border-radius: 8px;
-    .left-icon {
-      flex: none;
-      width: 40px;
-      height: 40px;
-    }
-    .right-option {
-      .txtOption {
-        display: flex;
-        margin-top: 8px;
-      }
-      .iconIcon {
-        width: 16px;
-        height: 16px;
-      }
-      .txt-1-item {
-        margin-left: 4px;
-        // line-height: 24px;
-        font-weight: 400;
-        font-size: 12px;
-        color: #ffffff;
-      }
-      .txt-2-item {
-        font-weight: 400;
-        font-size: 12px;
-        color: #0be72f;
-      }
-    }
-
-    .hintOption {
-      font-weight: bold;
-      font-size: 16px;
-      color: #00f8f3;
-    }
+    color: #A37FFF;
+    
   }
 
   .need-pay-option {
-    margin-top: 24px;
+    margin-top: 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -97,17 +58,16 @@
     height: 50px;
     line-height: 50px;
     text-align: center;
-    background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
-
+    background:linear-gradient( 270deg, #448EFF 0%, #8240CB 100%);
+    border: 1px solid #fff;
     border-radius: 25px;
     font-weight: 500;
     font-size: 16px;
-    color: rgba(0, 0, 0, 0.85);
+    color: #fff;
   }
 }
 .ant-drawer-content {
-  background: linear-gradient(180deg, #375150 0%, #182726 100%) !important;
-  box-shadow: 0px -6px 12px 0px rgba(0, 0, 0, 0.25) !important;
+  background: linear-gradient(180deg, #372d7a 0%, #120b1d 100%) !important;
   border-radius: 16px 16px 0px 0px;
 }
 .ant-drawer-body {
