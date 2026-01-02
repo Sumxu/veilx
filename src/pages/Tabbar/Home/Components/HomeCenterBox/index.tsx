@@ -9,34 +9,19 @@ const HomeCenterBox: FC = () => {
     <div className="HomeCenterBox">
       <div className="title">{t("全网数据")}</div>
       <div className="allBox">
-        {/* <img src={allDataBg} className="allDataBg"></img> */}
+        <img src={allDataBg} className="allDataBg"></img>
         <div className="boxContent">
-          <div className="boxItem">
-            <div className="boxItemNumber">8</div>
-          </div>
-          <div className="boxItem">
-            <div className="boxItemNumber">5</div>
-          </div>
-          <div className="boxItem">
-            <div className="boxItemNumber">3</div>
-          </div>
-          <div className="boxItem">
-            <div className="boxItemNumber">7</div>
-          </div>
-          <div className="boxItem">
-            <div className="boxItemNumber">0</div>
-          </div>
-          <div className="boxItem">
-            <div className="boxItemNumber">9</div>
-          </div>
-          <div className="boxItem">
-            <div className="boxItemNumber">0</div>
-          </div>
-          <div className="boxItem">
-            <div className="boxItemNumber">0</div>
-          </div>
+          {
+            [1, 2, 3,4,5,6,7,8].map((item, index) => {
+              return (
+                <div className="boxItem" key={index}>
+                  <div className="boxItemNumber">-</div>
+                </div>
+              );
+            })
+          }
         </div>
-        <div className="boxTitle">{t("全网总捐赠量(USDT)")}</div>
+        <div className="boxTitle">{t("全网总捐赠量")}(USDT)</div>
       </div>
       <div className="lineHeight65"></div>
       <div className="box">
@@ -48,8 +33,8 @@ const HomeCenterBox: FC = () => {
             </div>
 
             <div className="font16Option">
-              <span className="txt">20,560,000.00</span>
-              <span className="txt">10,809,300.00</span>
+              <span className="txt">-</span>
+              <span className="txt">-</span>
             </div>
           </div>
 
@@ -59,8 +44,8 @@ const HomeCenterBox: FC = () => {
               <span className="txt">{t("回购池")}(USDT)</span>
             </div>
             <div className="font16Option">
-              <span className="txt">8,89,200.00</span>
-              <span className="txt">10,809,300.00</span>
+              <span className="txt">-</span>
+              <span className="txt">-</span>
             </div>
           </div>
         </div>
@@ -81,16 +66,16 @@ const HomeCenterBox: FC = () => {
                 </div>
                 <div className="centerTxt">
                   {t("总发行量")}：
-                  <span className="centerValue">1.3{t("亿")}</span>
+                  <span className="centerValue">-{t("亿")}</span>
                 </div>
               </div>
               <div className="centerTxtOption centerTxtTop12">
                 <div className="centerTxt">
-                  {t("发行价")}：<span className="centerValue">0.08USDT</span>
+                  {t("发行价")}：<span className="centerValue">-USDT</span>
                 </div>
                 <div className="centerTxt">
                   {t("初始发行量")}：
-                  <span className="centerValue">1000{t("万")}</span>
+                  <span className="centerValue">-{t("万")}</span>
                 </div>
               </div>
             </div>
@@ -124,7 +109,7 @@ const HomeCenterBox: FC = () => {
         </div>
       </div>
       <div className="rankingBox">
-        <div className="rankIngTxt">捐赠排行榜</div>
+        <div className="rankIngTxt">{t('捐赠排行榜')}</div>
         <div className="rankingTopBox">
           <div className="topItemOne topItem">
             <div className="txt">-</div>
@@ -145,9 +130,9 @@ const HomeCenterBox: FC = () => {
         <div className="box">
           <div className="rankingListBox">
             <div className="headerTopOption">
-              <div className="headerLeft colorSize">排名</div>
-              <div className="headerCenter colorSize">用户</div>
-              <div className="headerRight colorSize">总捐赠</div>
+              <div className="headerLeft colorSize">{t('排名')}</div>
+              <div className="headerCenter colorSize">{t('用户')}</div>
+              <div className="headerRight colorSize">{t('总捐赠')}</div>
             </div>
             <div className="rankingItemBox">
               {[4, 5, 6, 7, 8, 9, 10].map((item, index) => (

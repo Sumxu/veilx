@@ -10,7 +10,6 @@ const HeaderFixedLogin: FC = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-
     // 初始判断一次（防止刷新时已在中间）
     handleScroll();
     window.addEventListener("scroll", handleScroll);

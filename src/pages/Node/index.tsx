@@ -13,7 +13,7 @@ import BackHeader from "@/components/BackHeader";
 import { fromWei, Totast, toWei } from "@/Hooks/Utils.ts";
 import InviteModal from "@/components/InviteModal";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
-
+import teamIcon from "@/assets/node/teamIcon.png";
 interface nodeItem {
   amount: BigNumber;
   nodeName: string;
@@ -44,11 +44,10 @@ const Node: React.FC = () => {
       nodeName: t("联创节点"),
       max: BigNumber.from("0"),
       inventory: BigNumber.from("0"),
-      id: 0,
+      id: 2,
       txtLst: [
         t("赠送V3级别"),
         t("赠送20000枚VEX"),
-        t("白名单购买资格10000U"),
         t("白名单购买资格10000U"),
         t("捐赠盈利税5%"),
         t("市场盈利税25%"),
@@ -56,7 +55,7 @@ const Node: React.FC = () => {
     },
     {
       amount: BigNumber.from("0"),
-      nodeName: t("联创节点"),
+      nodeName: t("社区节点"),
       max: BigNumber.from("0"),
       inventory: BigNumber.from("0"),
       id: 1,
@@ -73,7 +72,7 @@ const Node: React.FC = () => {
       nodeName: t("普通节点"),
       max: BigNumber.from("0"),
       inventory: BigNumber.from("0"),
-      id: 2,
+      id: 0,
       txtLst: [
         t("赠送V1级别"),
         t("赠送2000枚VEX"),
@@ -101,12 +100,15 @@ const Node: React.FC = () => {
    * @param item 购买节点
    */
   const buyClick = (item) => {
-    if (userNodeInfo.flg) return; //已购买节点
+    if (userNodeInfo.flg) return Totast(t("你已购买过节点"), "info"); //已购买节点
+    if (item.id == Number(userNodeInfo.nodeId) && userNodeInfo.flg) {
+      return Totast(t("待激活"), "info");
+    }
     setNodeId(item.id);
     setShowBuyNftPopup(true);
   };
   const myTeamPath = () => {
-    navigate("/myTeam");
+    navigate("/MyTeam");
   };
   /**
    *
@@ -241,7 +243,7 @@ const Node: React.FC = () => {
                       <div className="leftOption">
                         <div className="txt">{item.nodeName}</div>
                         <div className="tagOption">
-                          <span className="spn1">限量</span>
+                          <span className="spn1">{t("限量")}</span>
                           <span className="spn2">
                             {item.inventory.toString()}
                             <span className="spn2-1">
@@ -263,7 +265,12 @@ const Node: React.FC = () => {
                         ></div>
                       </div>
                     </div>
-                    <div className="buyBtn" onClick={() => buyClick(item)}>{nodeBtn(item)}</div>
+                    <div
+                      className={item.inventory.isZero() ? "noBuy" : "buyBtn"}
+                      onClick={() => buyClick(item)}
+                    >
+                      {item.inventory.isZero() ? "已售空" : nodeBtn(item)}
+                    </div>
                     {item.txtLst.map((txtItem, txtIndex) => {
                       return (
                         <div className="txtBox" key={txtIndex}>
@@ -275,13 +282,20 @@ const Node: React.FC = () => {
                       );
                     })}
                     <div className="endTxtOption">
-                      注：捐赠和市场盈利税按1000U/份为单
+                      {t("注：捐赠和市场盈利税按1000U/份为单")}
                     </div>
                   </div>
                 </div>
               );
             })
           )}
+        </div>
+        <div className="lineHeight24"></div>
+        <div className="teamBox">
+          <div className="teamBtn" onClick={() => myTeamPath()}>
+            <img src={teamIcon} className="teamIcon"></img>
+            <span className="spnTxt">{t("我的团队")}</span>
+          </div>
         </div>
       </div>
       <Drawer

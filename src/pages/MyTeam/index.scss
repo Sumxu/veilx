@@ -2,6 +2,7 @@
   background: #000;
   padding: 16px;
   box-sizing: border-box;
+
   .teamContentBox {
     padding-bottom: 40px;
     height: calc(100vh - 45px);
@@ -10,48 +11,90 @@
       padding: 16px 0;
       display: flex;
       align-items: center;
-      background: linear-gradient(270deg, #00fcc3 0%, #00b1fe 100%);
       border-radius: 8px;
-      margin-top: 24px;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(37, 26, 70, 0.85) 100%
+      );
+      clip-path: polygon(
+        8px 0,
+        calc(100% - 8px) 0,
+        100% 8px,
+        100% calc(100% - 8px),
+        calc(100% - 8px) 100%,
+        8px 100%,
+        0 calc(100% - 8px),
+        0 8px
+      );
+      border-radius: 8px;
+      padding: 16px 14px;
       .itemOption {
         flex: 1;
         .number {
           text-align: center;
           font-weight: bold;
           font-size: 22px;
-          color: #000;
+          color: #fff;
         }
         .txt {
+          color: #a37fff;
           text-align: center;
           font-weight: 400;
           font-size: 12px;
           // color: rgba(255, 255, 255, 0.65);
-          color: #000;
           margin-top: 4px;
         }
       }
       .line {
-        background: rgba(0, 0, 0, 0.12);
+        background: rgba(0, 0, 0, 0.35);
         width: 1px;
         height: 44px;
       }
     }
     .box {
-      background: rgba(0, 240, 247, 0.15);
-      border: 1px solid #00e5ec;
       margin-top: 12px;
-      // background: rgba(0, 240, 247, 0.07);
       border-radius: 8px;
-      box-sizing: border-box;
+      padding: 1px; // 边框厚度
+      background: linear-gradient(
+        180deg,
+        rgba(203, 214, 255, 0.75),
+        rgba(95, 130, 245, 0.75)
+      );
+      clip-path: polygon(
+        8px 0,
+        calc(100% - 8px) 0,
+        100% 8px,
+        100% calc(100% - 8px),
+        calc(100% - 8px) 100%,
+        8px 100%,
+        0 calc(100% - 8px),
+        0 8px
+      );
     }
     .usdtInfo {
-      padding: 17px 12px;
+      padding: 16px 12px;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(37, 26, 70, 0.85) 100%
+      );
+      clip-path: polygon(
+        8px 0,
+        calc(100% - 8px) 0,
+        100% 8px,
+        100% calc(100% - 8px),
+        calc(100% - 8px) 100%,
+        8px 100%,
+        0 calc(100% - 8px),
+        0 8px
+      );
       .usdtTop {
         .title {
           text-align: center;
           font-weight: 500;
           font-size: 14px;
-          color: #ffffff;
+          color: #a37fff;
         }
         .number {
           text-align: center;
@@ -76,21 +119,36 @@
           flex-direction: column;
           justify-content: center;
           .title {
-            font-weight: 500;
-            font-size: 14px;
-            color: #ffffff;
-          }
-          .number {
             margin-top: 4px;
             font-weight: 400;
             font-size: 12px;
             color: #00f8f3;
+          }
+          .number {
+            font-weight: 500;
+            font-size: 14px;
+            color: #a37fff;
           }
         }
       }
     }
 
     .inviteBox {
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(37, 26, 70, 0.85) 100%
+      );
+      clip-path: polygon(
+        8px 0,
+        calc(100% - 8px) 0,
+        100% 8px,
+        100% calc(100% - 8px),
+        calc(100% - 8px) 100%,
+        8px 100%,
+        0 calc(100% - 8px),
+        0 8px
+      );
       padding: 16px 12px;
       box-sizing: border-box;
       display: flex;
@@ -140,7 +198,7 @@
           text-align: center;
           font-weight: 500;
           font-size: 14px;
-          color: #ffffff;
+          color: #a37fff;
         }
         .spn2 {
           margin-top: 12px;
@@ -173,21 +231,36 @@
       align-items: center;
       justify-content: space-between;
       margin-top: 12px;
-      .itemBox {
-        background: rgba(0,240,247,0.15);
-        border-radius: 8px;
-        border: 1px solid #00e5ec;
-        padding: 16px 14px;
-        box-sizing: border-box;
+      .awardItenflex1 {
         width: 48%;
+      }
+      .itemBox {
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.85) 0%,
+          rgba(37, 26, 70, 0.85) 100%
+        );
+        clip-path: polygon(
+          8px 0,
+          calc(100% - 8px) 0,
+          100% 8px,
+          100% calc(100% - 8px),
+          calc(100% - 8px) 100%,
+          8px 100%,
+          0 calc(100% - 8px),
+          0 8px
+        );
+        border-radius: 8px;
+        padding: 16px 14px;
+        width: 100%;
         .txt {
           font-weight: 400;
           font-size: 12px;
-          color: #00f8f3;
+          color: #a37fff;
           text-align: center;
         }
-        .awardColor{
-          color: #F4FF00 !important;
+        .awardColor {
+          color: #f4ff00 !important;
         }
         .number {
           text-align: center;
@@ -223,6 +296,26 @@
       font-size: 16px;
       color: #ffffff;
     }
+    .teanListBox {
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(37, 26, 70, 0.85) 100%
+      );
+      clip-path: polygon(
+        8px 0,
+        calc(100% - 8px) 0,
+        100% 8px,
+        100% calc(100% - 8px),
+        calc(100% - 8px) 100%,
+        8px 100%,
+        0 calc(100% - 8px),
+        0 8px
+      );
+      padding: 16px 12px;
+      box-sizing: border-box;
+      // display: flex;
+    }
     .teamList {
       .itemTxtRight {
         text-align: right;
@@ -232,11 +325,8 @@
         text-align: left;
         font-weight: 400;
         font-size: 12px;
-        color: rgba(255, 255, 255, 0.65);
+        color: #a37fff;
       }
-      padding: 16px 12px;
-      box-sizing: border-box;
-      margin-top: 16px;
       .teamHeaderOption {
         display: flex;
         align-items: center;
@@ -246,7 +336,7 @@
           text-align: left;
           font-weight: 400;
           font-size: 12px;
-          color: rgba(255, 255, 255, 0.65);
+          color: #a37fff;
         }
       }
       .marginLeft-6 {

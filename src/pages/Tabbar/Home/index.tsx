@@ -48,10 +48,10 @@ const Home: FC = () => {
       <HeaderFixedLogin></HeaderFixedLogin>
       <HomeTopBox></HomeTopBox>
       <HomCenterBox></HomCenterBox>
-      {/* <InviteModal
+      <InviteModal
         isShow={inviteShow}
         onClose={() => setInviteShow(false)}
-      ></InviteModal> */}
+      ></InviteModal>
     </div>
   );
 };

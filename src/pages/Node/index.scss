@@ -1,6 +1,6 @@
 .NodePage {
   background: #000;
-  .block200{
+  .block200 {
     height: 200px;
   }
   position: relative;
@@ -257,10 +257,82 @@
         font-size: 14px;
         color: #ffffff;
       }
+      .noBuy {
+        position: absolute;
+        right: 12px;
+        border-radius: 16px;
+        padding: 6px 31px;
+        text-align: center;
+        bottom: 12px;
+        font-weight: 500;
+        border: 1px solid #fff;
+        background: linear-gradient(270deg, #696172 0%, #404957 100%);
+        border-radius: 16px;
+        font-weight: 500;
+        font-size: 14px;
+        color: #ffffff;
+      }
     }
   }
 }
 
 .--adm-color-border {
   background: #00d7f0;
+}
+.lineHeight24{
+  height: 24px;
+}
+.teamBox {
+  padding: 1px;
+  margin-inline: 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(203, 214, 255, 0.75),
+    rgba(95, 130, 245, 0.75)
+  );
+  clip-path: polygon(
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px),
+    0 8px
+  );
+  .teamBtn {
+    position: relative;
+    padding: 16px 12px;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(37, 26, 70, 0.85) 100%
+    );
+    clip-path: polygon(
+      8px 0,
+      calc(100% - 8px) 0,
+      100% 8px,
+      100% calc(100% - 8px),
+      calc(100% - 8px) 100%,
+      8px 100%,
+      0 calc(100% - 8px),
+      0 8px
+    );
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    border-radius: 8px;
+    .teamIcon {
+      width: 24px;
+      height: 24px;
+    }
+    .spnTxt {
+      margin-left: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #00f8f3;
+    }
+  }
 }

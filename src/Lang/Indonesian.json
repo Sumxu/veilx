@@ -117,6 +117,26 @@
   "编号": "ID",
   "节点累计收益": "Total Pendapatan Node",
   "待领取节点收益": "Pendapatan Node Tertunda",
-  "领取收益": "Klaim Pendapatan"
-
+  "领取收益": "Klaim Pendapatan",
+  "复制": "Salin",
+  "联创节点": "Node Pendiri Bersama",
+  "赠送V3级别": "Termasuk Level V3",
+  "赠送20000枚VEX": "Termasuk 20.000 VEX",
+  "白名单购买资格10000U": "Kuota Pembelian Whitelist 10.000U",
+  "捐赠盈利税5%": "Pajak Keuntungan Donasi 5%",
+  "市场盈利税25%": "Pajak Keuntungan Pasar 25%",
+  "赠送V2级别": "Termasuk Level V2",
+  "赠送6000枚VEX": "Termasuk 6.000 VEX",
+  "白名单购买资格2000U": "Kuota Pembelian Whitelist 2.000U",
+  "普通节点": "Node Reguler",
+  "赠送V1级别": "Termasuk Level V1",
+  "赠送2000枚VEX": "Termasuk 2.000 VEX",
+  "白名单购买资格500U": "Kuota Pembelian Whitelist 500U",
+  "你已购买过节点": "Anda sudah membeli node",
+  "已售空": "Habis Terjual",
+  "注：捐赠和市场盈利税按1000U/份为单": "Catatan: Pajak donasi dan pasar dihitung per unit 1.000U",
+  "排名": "Peringkat",
+  "用户": "Pengguna",
+  "总捐赠": "Total Donasi",
+  "社区节点": "Node Komunitas"
 }

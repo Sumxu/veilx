@@ -9,7 +9,6 @@ import ContractSend from "@/Hooks/ContractSend.ts";
 import ContractList from "@/Contract/Contract.ts";
 import ContractRequest from "@/Hooks/ContractRequest.ts";
 import closeIcon from "@/assets/basic/close.png";
-import checkIcon from "@/assets/node/nodeIcon.png";
 interface nodeItem {
   amount: BigNumber;
   inventory: BigNumber; //库存
@@ -22,7 +21,7 @@ interface buyNftPopupClass {
 function BuyNftPopup(Props: buyNftPopupClass) {
   const mapTxts = {
     0: [t("联创节点")],
-    1: [t("联创节点")],
+    1: [t("社区节点")],
     2: [t("普通节点")],
   };
   const walletAddress = userAddress((state) => state.address);
@@ -40,7 +39,6 @@ function BuyNftPopup(Props: buyNftPopupClass) {
       methodsName: "balanceOf",
       params: [walletAddress],
     });
-    console.log("usdtRes==", usdtRes);
     if (usdtRes.value) {
       setUsdtBalanceOf(usdtRes.value);
     }
